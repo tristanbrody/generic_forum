@@ -1,1 +1,5 @@
 ./generic-forum-fe/node_modules/
+./generic-forum-fe/package-lock.json
+./generic-forum-be/node_modules/
+./generic-forum-be/package-lock.json
+./generic-forum-be/.env
