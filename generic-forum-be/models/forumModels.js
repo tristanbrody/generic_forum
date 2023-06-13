@@ -34,6 +34,11 @@ const threadSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    edited: {
+      type: Boolean,
+      default: false,
+      timestamps: true,
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -62,6 +67,11 @@ const postSchema = mongoose.Schema(
     text: {
       type: String,
       required: true,
+    },
+    edited: {
+      type: Boolean,
+      default: false,
+      timestamps: true,
     },
   },
   { collection: "posts", timestamps: true }

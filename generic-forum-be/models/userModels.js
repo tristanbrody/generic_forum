@@ -27,10 +27,31 @@ const userSchema = mongoose.Schema(
       required: true,
       default: true,
     },
+    userPoints: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   { collection: "users", timestamps: true }
 );
 
+const userPermissionSet = mongoose.Schema(
+  {
+    permissions: {
+      type: Array,
+      required: true,
+      unique: true,
+    },
+  },
+  { collection: "userPermissionSets", timestamps: true }
+);
+
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+const UserPermissionSet = mongoose.model(
+  "UserPermissionSet",
+  userPermissionSet
+);
+
+module.exports = { User, UserPermissionSet };

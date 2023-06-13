@@ -1,0 +1,8 @@
+{
+  "console-ninja.allowedHosts": ["localhost:5173"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none",
+  "prettier.prettierPath": "./node_modules/prettier"
+}

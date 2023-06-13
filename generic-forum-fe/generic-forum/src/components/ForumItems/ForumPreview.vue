@@ -1,7 +1,11 @@
 <script>
-import axios from 'axios'
-
+import ForumCreationForm from './ForumCreationForm.vue'
+import ForumPreviewItem from './ForumPreviewItem.vue'
 export default {
+  components: {
+    ForumCreationForm,
+    ForumPreviewItem
+  },
   data() {
     return {
       forums: []
@@ -9,11 +13,12 @@ export default {
   },
   methods: {
     async getRecentlyCreatedForums() {
-      const recentlyCreatedForums = await axios.get('http://localhost:3001/forum', {
-        withCredentials: false
-      })
-      this.forums = recentlyCreatedForums.data
-      console.log(recentlyCreatedForums)
+      const recentlyCreatedForums = await fetch('http://localhost:3001/forum', {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include'
+      }).then((data) => data.json().then((data) => data))
+      this.forums = recentlyCreatedForums
     }
   },
   created() {
@@ -23,21 +28,13 @@ export default {
 </script>
 
 <template>
-  <div>
+  <section id="main-section">
     <h2>Recently Created Forums</h2>
     <div v-for="forum in forums.slice(0, 5)" v-bind:key="forum.id">
-      <a :href="'localhost:5173/' + forum.forumName"
-        ><h3>Forum name: {{ forum.forumName }}</h3></a
-      >
-      <h3>Forum description: {{ forum.description }}</h3>
+      <ForumPreviewItem :forumName="forum.forumName" :forumDescription="forum.description" />
     </div>
-  </div>
+    <ForumCreationForm />
+  </section>
 </template>
 
-<style>
-/* nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-} */
-</style>
+<style></style>
